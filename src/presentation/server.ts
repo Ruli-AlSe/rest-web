@@ -22,6 +22,8 @@ export class Server {
 
   async start() {
     // * Middlewares
+    this.app.use(express.json()); // every request will be serialized as JSON
+    this.app.use(express.urlencoded({ extended: true })); // every request will be serialized x-www-form-urlencoded
 
     //* Public folder
     this.app.use(express.static(this.publicPath));
