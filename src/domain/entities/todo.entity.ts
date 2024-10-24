@@ -1,5 +1,5 @@
 export class TodoEntity {
-  constructor(public id: number, public text: string, public completedAt?: Date | null) {}
+  constructor(public id: number, public text: string, public completedAt: Date | null) {}
 
   get isCompleted() {
     return !!this.completedAt;
@@ -11,7 +11,7 @@ export class TodoEntity {
     if (!id || typeof id !== 'number') throw 'id is required and must be a number';
     if (!text) throw 'Text is required';
 
-    let newCompletedAt;
+    let newCompletedAt = null;
     if (completedAt) {
       newCompletedAt = new Date(completedAt);
       if (isNaN(newCompletedAt.getTime())) throw 'completedAt is not a valid date';
