@@ -3,4 +3,5 @@ node_modules
 .env
 certs
 
-postgres/
+/postgres
+/dist
