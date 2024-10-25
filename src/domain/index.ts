@@ -8,3 +8,5 @@ export * from './use-cases/todos/delete-todo';
 export * from './use-cases/todos/get-todo';
 export * from './use-cases/todos/get-all-todos';
 export * from './use-cases/todos/update-todo';
+
+export * from './errors/custom.error';
