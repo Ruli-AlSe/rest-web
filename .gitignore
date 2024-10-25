@@ -5,3 +5,4 @@ certs
 
 /postgres
 /dist
+/coverage
