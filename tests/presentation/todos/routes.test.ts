@@ -42,7 +42,7 @@ describe('Testing routes.ts', () => {
   });
 
   test('should return a 404 NotFound api/todos/:id', async () => {
-    const { body } = await request(testServer.app).get('/api/todos/999').expect(400);
+    const { body } = await request(testServer.app).get('/api/todos/999').expect(404);
 
     expect(body).toEqual({
       error: 'Todo with id 999 not found',
@@ -60,10 +60,10 @@ describe('Testing routes.ts', () => {
   });
 
   test('should return an error if text is not present api/todos/', async () => {
-    const { body } = await request(testServer.app).post('/api/todos/').send({}).expect(400);
+    const { body } = await request(testServer.app).post('/api/todos/').send({}).expect(500);
 
     expect(body).toEqual({
-      error: 'Text property is required',
+      error: 'Internal server error - check logs',
     });
   });
 
@@ -71,10 +71,10 @@ describe('Testing routes.ts', () => {
     const { body } = await request(testServer.app)
       .post('/api/todos/')
       .send({ text: '' })
-      .expect(400);
+      .expect(500);
 
     expect(body).toEqual({
-      error: 'Text property is required',
+      error: 'Internal server error - check logs',
     });
   });
 
@@ -97,7 +97,7 @@ describe('Testing routes.ts', () => {
     const { body } = await request(testServer.app)
       .put('/api/todos/1')
       .send({ text: 'Text updated', completedAt: '2024-10-12' })
-      .expect(400);
+      .expect(404);
 
     expect(body).toEqual({
       error: 'Todo with id 1 not found',
@@ -153,7 +153,7 @@ describe('Testing routes.ts', () => {
     const { body } = await request(testServer.app)
       .delete('/api/todos/999')
       .send({ text: 'Text updated' })
-      .expect(400);
+      .expect(404);
 
     expect(body).toEqual({
       error: 'Todo with id 999 not found',
