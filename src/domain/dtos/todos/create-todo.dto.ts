@@ -3,7 +3,7 @@ export class CreateTodoDto {
 
   static create(props: { [key: string]: any }): [string?, CreateTodoDto?] {
     const { text } = props;
-    if (!text) return ['Text property is required', undefined];
+    if (!text || text.length === 0) return ['Text property is required', undefined];
 
     const textCapitalized = text.charAt(0).toUpperCase() + text.slice(1);
 
